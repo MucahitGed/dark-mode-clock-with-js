@@ -23,39 +23,38 @@ btn.addEventListener("click" , (e)=>{
   }
 })
 
-setInterval(setClock,1000);
-
 const hourHand = document.querySelector(".hour");
 const minuteHand = document.querySelector(".minute");
 const secondHand = document.querySelector(".second");
+setInterval(setClock,1000);
+
 
 function setClock(){
-    const date = new Date();
-    const secondRatio = date.getSeconds() / 60;
-    const minuteRatio = (secondRatio + date.getMinutes()) / 60;
-    const hourRatio = (minuteRatio + date.getHours())/ 12 ;
-    setRotation(secondHand , secondRatio);
-    setRotation(minuteHand , minuteRatio);
-    setRotation(hourHand , hourRatio);
+  const currentDate = new Date()
+    const secondsRatio = currentDate.getSeconds() / 60
+    const minutesRatio = (secondsRatio + currentDate.getMinutes()) / 60
+    const hoursRatio = (minutesRatio + currentDate.getHours()) / 12
+    setRotation(secondHand, secondsRatio)
+    setRotation(minuteHand, minutesRatio)
+    setRotation(hourHand, hoursRatio)
+    digitalClock()
 }
 
 function setRotation(element , rotationRatio){
     element.style.setProperty("--rotation" , rotationRatio * 360);
 }
 
-setClock();
 
-digitalClock();
+
+
 function digitalClock(){
-    
-    digital_hour.innerHTML = date.getHours();
-    if(digital_minute.innerHTML = date.getMinutes() < 10){
-        digital_minute.innerHTML = `0` + date.getMinutes()
-    }else{
-        digital_minute.innerHTML =date.getMinutes()
-    }
-    
-    setClock();
+  const digitalDate = new Date();
+  digital_hour.innerHTML = digitalDate.getHours();
+  if(digital_minute.innerHTML = digitalDate.getMinutes() < 10){
+      digital_minute.innerHTML = `0` + digitalDate.getMinutes()
+  }else{
+      digital_minute.innerHTML = digitalDate.getMinutes()
+  }
 }
 myDate();
 function myDate() {
